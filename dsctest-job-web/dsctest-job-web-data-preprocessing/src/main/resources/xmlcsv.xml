@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<DataFile>-->
+    <!--<FileHeader>-->
+        <!--<TimeStamp>@timestamp@</TimeStamp>-->
+        <!--<TimeZone>@timezone@</TimeZone>-->
+        <!--<VendorName>@vendorname@</VendorName>-->
+        <!--<elementType>@elementtype@</elementType>-->
+        <!--<CmVersion>@cmversion@</CmVersion>-->
+    <!--</FileHeader>-->
+    <!--<objects>-->
+        <!--<ObjectType>@objecttype@</ObjectType>-->
+        <!--<FileName>-->
+            <!--<N i="1">@N1@</N>-->
+            <!--<N i="2">@N2@</N>-->
+            <!--<N i="3">@N3@</N>-->
+        <!--</FileName>-->
+        <!--<FileValue>-->
+            <!--<Object rmUid="@rmuid@" i="many">-->
+                <!--<V i="1">@V1@</V>-->
+                <!--<V i="2">@V2@</V>-->
+                <!--<V i="3">@V3@</V>-->
+            <!--</Object>-->
+        <!--</FileValue>-->
+    <!--</objects>-->
+<!--</DataFile>-->
+<!--解析规则：解析出来的都是路径信息-->
+<root>
+    <DataFile>DataFile</DataFile>
+    <FileHeader>DataFile/FileHeader</FileHeader>
+    <TimeStamp>DataFile/FileHeader/TimeStamp</TimeStamp>
+    <TimeZone>DataFile/FileHeader/TimeZone</TimeZone>
+    <VendorName>DataFile/FileHeader/VendorName</VendorName>
+    <elementType>DataFile/FileHeader/elementType</elementType>
+    <CmVersion>DataFile/FileHeader/CmVersion</CmVersion>
+    <objects>DataFile/objects</objects>
+    <ObjectType>DataFile/objects/ObjectType</ObjectType>
+    <FileName>DataFile/objects/FileName</FileName>
+    <N>DataFile/objects/FileName/N</N>
+    <FileValue>DataFile/objects/FileValue</FileValue>
+    <Object>DataFile/objects/FileValue/Object</Object>
+    <V>DataFile/objects/FileValue/Object/V</V>
+</root>
