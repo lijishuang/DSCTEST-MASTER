@@ -9,29 +9,33 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.dom4j.Element;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 @Component
-public class loadXml {
+public class loadXml{
     //解析xml的目录结构的公共函数
     private Logger logger = LoggerFactory.getLogger(loadXml.class);
     @Autowired
     private xmlcsvConfig xmlcsvConfig;
 
-    public ReturnD<ArrayList<String>> eleRoot(){
+    public HashMap<String,String> eleRoot(){
         //解析
+       HashMap<String ,String > elements =new HashMap<>();
+        if (xmlcsvConfig == null){
+           // return elements.put("Failed","500");
+        }
         Document document = xmlcsvConfig.readPTNXMLDocument();
         Element root = document.getRootElement();
         String rootName = root.getName();
-        ArrayList<String> mid = new ArrayList<String>();
 
+        // 获取配置文件的相应的信息
 
-        mid.add(rootName);
-        logger.info(">>>>>>>>>>> Root Name is %s.",rootName);
-        ReturnD<ArrayList<String>> re = new ReturnD<>();
-        re.Lable = "root";
-        re.content =mid;
-        return re;
+//        mid.add(rootName);
+//        logger.info(">>>>>>>>>>> Root Name is %s.",rootName);
+//        ReturnD<ArrayList<String>> re = new ReturnD<>();
+//        re.Lable = "root";
+//        re.content =mid;
+        return elements;
     }
 
 //    public ReturnD<ArrayList<String>> eleFproof(){}
