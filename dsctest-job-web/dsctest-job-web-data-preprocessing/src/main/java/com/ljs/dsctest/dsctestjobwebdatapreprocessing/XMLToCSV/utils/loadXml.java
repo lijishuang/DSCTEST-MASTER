@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.dom4j.Element;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Component
 public class loadXml{
@@ -20,23 +21,22 @@ public class loadXml{
 
     public HashMap<String,String> eleRoot(){
         //解析
-       HashMap<String ,String > elements =new HashMap<>();
+       HashMap<String ,String > elements =new HashMap<String ,String >();
         if (xmlcsvConfig == null){
-           // return elements.put("Failed","500");
+           elements.put("Failed","500");
+           return elements;
         }
         Document document = xmlcsvConfig.readPTNXMLDocument();
         Element root = document.getRootElement();
         String rootName = root.getName();
-
+        logger.info(">>>>>>>>>>> Root Name is %s.",rootName);
         // 获取配置文件的相应的信息
-
-//        mid.add(rootName);
-//        logger.info(">>>>>>>>>>> Root Name is %s.",rootName);
-//        ReturnD<ArrayList<String>> re = new ReturnD<>();
-//        re.Lable = "root";
-//        re.content =mid;
+        List<Element> chidlElement = root.elements(); //获得root下的所有子元素
+        for(Element element:chidlElement){
+            elements.put(element.getName(),element.getText());
+            logger.info(">>>>>>>>>>> %s Name is %s.",element.getName(),element.getText());
+        }
         return elements;
     }
 
-//    public ReturnD<ArrayList<String>> eleFproof(){}
 }
