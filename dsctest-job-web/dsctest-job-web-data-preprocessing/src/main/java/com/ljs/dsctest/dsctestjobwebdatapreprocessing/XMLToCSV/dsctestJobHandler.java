@@ -23,8 +23,7 @@ public class dsctestJobHandler extends IJobHandler{
     public ReturnT<String> execute(String param) throws Exception {
         XxlJobLogger.log("Analysis Starting...");
         //解析获得结构xml的数据
-
-
+        service.WriteResult();
         return SUCCESS;
     }
 }

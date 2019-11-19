@@ -4,6 +4,7 @@ import org.dom4j.Document;
 import org.springframework.stereotype.Component;
 import org.dom4j.Element;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,5 +15,5 @@ public interface AnaXML {
     List<Object> eleList(String path);
     Map<String,String> eleHash();
     //获取的hash值后，要对数据文件进行解的操作
-    StringBuilder[] DataKeyValue();
+    ArrayList<String> DataKeyValue();
 }

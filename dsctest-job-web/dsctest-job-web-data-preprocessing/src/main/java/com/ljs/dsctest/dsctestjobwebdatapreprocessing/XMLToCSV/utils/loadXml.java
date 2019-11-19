@@ -46,37 +46,13 @@ public class loadXml{
     //判断xml的元素是否为list
     public Boolean IfList(Document document,String path){
         List list = document.selectNodes(path);
-        if (list.size() == 1){
+        if (list.size() == 0){
             logger.info(">>>>>>>>>>> List has not elements.");
             return Boolean.FALSE;
         }else {
             return Boolean.TRUE;
         }
     }
-    /**
-     * 以追加的方式写入数据到csv文件中:写入的是测试的结果信息
-     * @param filepath：文件路径
-     * @param filename：生成的文件名
-     * @param colnames：生成的文件的列名
-     */
-    public File CreateCSV(String filepath,String filename,String[] colnames){
-        File filecsv = new File(filepath,filename);
-        try{
-            PrintWriter pt = new PrintWriter(filecsv,"GBK");
-            StringBuffer sb = new StringBuffer();
-            for (int i=0; i<colnames.length; i++){
-                if(i<colnames.length-1){
-                    sb.append(colnames[i]+"^#");
-                }else{
-                    sb.append(colnames[i]+"\r\n");
-                }
-            }
-            pt.flush();
-            pt.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return filecsv;
-    }
+
 
 }

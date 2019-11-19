@@ -2,8 +2,10 @@ package com.ljs.dsctest.dsctestjobwebdatapreprocessing.XMLToCSV.service.Impl;
 
 import com.ljs.dsctest.dsctestjobwebdatapreprocessing.XMLToCSV.conf.xmlcsvConfig;
 import com.ljs.dsctest.dsctestjobwebdatapreprocessing.XMLToCSV.service.AnaXML;
+import com.ljs.dsctest.dsctestjobwebdatapreprocessing.XMLToCSV.utils.Compare;
 import com.ljs.dsctest.dsctestjobwebdatapreprocessing.XMLToCSV.utils.loadXml;
 import org.dom4j.Document;
+import org.dom4j.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,23 +48,41 @@ public class AnaXMLImpl implements AnaXML {
     }
 
     @Override
-    public StringBuilder[] DataKeyValue(){
+    public ArrayList<String> DataKeyValue(){
+        ArrayList<String> stringBuilder = new ArrayList<>();
         Map<String,String> hashxmlJiegou =  eleHash();
-        Set<Entry<String, String>> set = hashxmlJiegou.entrySet();
-        Iterator<Entry<String, String>> iterator = set.iterator();
         List<Object> listObject = null;
-        while(iterator.hasNext()) {
-            Entry entry = iterator.next();
-            String key = (String) entry.getKey();
-            String value = (String) entry.getValue();
-            if(key == "Object"){
-                if(lxml.IfList(document.readPTNDataDocument(),value) == Boolean.TRUE){
-
+        String objectValue = hashxmlJiegou.get("object");
+        listObject = eleList(objectValue);
+        Element nextiter =null;
+        for (int i=0;i<=listObject.size();i++){
+            StringBuilder strBuild = new StringBuilder();
+            nextiter = (Element) listObject.get(i);
+            String rmuid = nextiter.attributeValue("rmUid");
+            strBuild.append(rmuid+"^#");
+            String Vpath = objectValue+"["+i+"]"+"/V";
+            List<Object> prefelements = eleList(Vpath);
+            for(int j=0;j<prefelements.size();j++){
+                Element V1 = (Element)prefelements.get(j);
+                String V1Test = V1.getText();
+                if(j<prefelements.size()-1){
+                    strBuild.append(V1Test+"^#");
+                }else {
+                    strBuild.append(V1Test);
                 }
-                listObject = eleList(value);
             }
-
+            stringBuilder.add(strBuild.toString());
         }
+        return stringBuilder;
+    }
+
+    @Autowired
+    private Compare compare;
+    public void WriteResult() throws Exception{
+       ArrayList<String> destinct =document.ReadCSV();
+       ArrayList<String> source =DataKeyValue();
+       String[] comm = compare.CompareSD(source,destinct);
+       compare.CreateCSV(document.getCsvpath(),document.getCsvpathresult(),comm);
     }
 
 }
