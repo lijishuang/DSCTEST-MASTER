@@ -25,18 +25,18 @@
 <!--</DataFile>-->
 <!--解析规则：解析出来的都是路径信息-->
 <root>
-    <DataFile>DataFile</DataFile>
-    <FileHeader>DataFile/FileHeader</FileHeader>
+    <!--<DataFile>DataFile</DataFile>-->
+    <!--<FileHeader>DataFile/FileHeader</FileHeader>-->
     <TimeStamp>DataFile/FileHeader/TimeStamp</TimeStamp>
     <TimeZone>DataFile/FileHeader/TimeZone</TimeZone>
     <VendorName>DataFile/FileHeader/VendorName</VendorName>
     <elementType>DataFile/FileHeader/elementType</elementType>
     <CmVersion>DataFile/FileHeader/CmVersion</CmVersion>
-    <objects>DataFile/objects</objects>
+    <!--<objects>DataFile/objects</objects>-->
     <ObjectType>DataFile/objects/ObjectType</ObjectType>
-    <FileName>DataFile/objects/FileName</FileName>
+    <!--<FileName>DataFile/objects/FileName</FileName>-->
     <N>DataFile/objects/FileName/N</N>
-    <FileValue>DataFile/objects/FileValue</FileValue>
+    <!--<FileValue>DataFile/objects/FileValue</FileValue>-->
     <Object>DataFile/objects/FileValue/Object</Object>
     <V>DataFile/objects/FileValue/Object/V</V>
 </root>

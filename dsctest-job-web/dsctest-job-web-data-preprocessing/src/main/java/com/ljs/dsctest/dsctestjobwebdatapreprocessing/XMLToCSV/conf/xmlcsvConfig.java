@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.net.URL;
+import com.xxl.job.core.log.XxlJobLogger;
 @Component
 @Configuration
 public class xmlcsvConfig {
@@ -22,21 +23,26 @@ public class xmlcsvConfig {
     private String xmlptnjiegoupath;
     @Value("${xml.PTN.data.path}")
     private String xmlptndatapath;
+    @Value("${csv.path}")
+    private String csvpath;
 
     @Bean
     public Document readPTNXMLDocument(){
-        logger.info(">>>>>>>>>>> xml PTN analysis init.");
+        XxlJobLogger.log(">>>>>>>>>>> xml PTN analysis init");
+       // logger.info(">>>>>>>>>>> xml PTN analysis init.");
         URL url = ConfigurationUtils.locate(xmlptnjiegoupath);
         SAXReader reader = new SAXReader();
         if (!new File(xmlptnjiegoupath).exists()){
-            logger.info(">>>>>>>>>>> xml file not exist!");
+            XxlJobLogger.log(">>>>>>>>>>> xml file not exist!");
+        //    logger.info(">>>>>>>>>>> xml file not exist!");
             return null;
         }
         Document document = null;
         try{
             document = reader.read(url);
         }catch (DocumentException e){
-            logger.error(">>>>>>>>>>> xml PTN analysis error.>>%e",e);
+            XxlJobLogger.log(">>>>>>>>>>> xml PTN analysis error.>>%e",e);
+        //    logger.error(">>>>>>>>>>> xml PTN analysis error.>>%e",e);
         }
         return document;
     }
@@ -58,4 +64,5 @@ public class xmlcsvConfig {
         }
         return document;
     }
+
 }
