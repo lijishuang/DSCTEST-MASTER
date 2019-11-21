@@ -1,6 +1,5 @@
 package com.ljs.dsctest.dsctestjobwebdatapreprocessing.XMLToCSV.utils;
 
-import lombok.Builder;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

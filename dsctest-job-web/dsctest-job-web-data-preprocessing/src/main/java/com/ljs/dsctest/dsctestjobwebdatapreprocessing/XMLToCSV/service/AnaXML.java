@@ -1,11 +1,7 @@
 package com.ljs.dsctest.dsctestjobwebdatapreprocessing.XMLToCSV.service;
 
-import org.dom4j.Document;
 import org.springframework.stereotype.Component;
-import org.dom4j.Element;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

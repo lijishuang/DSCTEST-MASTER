@@ -11,15 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 import com.xxl.job.core.log.XxlJobLogger;
 import java.util.*;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.AbstractMap;
+
 @Component
 @Service
 public class AnaXMLImpl implements AnaXML {
